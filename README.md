@@ -4,6 +4,16 @@ Comandos básicos para inicializar, aplicar y destruir la infraestructura gestio
 
 ---
 
+## Instalación 
+
+[Instalación dependiendo tu SO](https://developer.hashicorp.com/terraform/install)
+
+Mac
+```bash
+brew tap hashicorp/tap
+brew install hashicorp/tap/terraform
+```
+
 ## Inicializar y Aplicar Cambios con Terraform
 
 ### 1. Inicializar el repositorio
