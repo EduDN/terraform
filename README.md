@@ -1,35 +1,33 @@
 # Gestión de Infraestructura con Terraform
 
+> Guía de referencia rápida para instalar, configurar y operar Terraform
+
 ---
 
-## Instalación 
+## Instalación
 
-[Instalación dependiendo tu SO](https://developer.hashicorp.com/terraform/install)
-
-
-Mac
+**macOS**
 ```bash
 brew tap hashicorp/tap
 brew install hashicorp/tap/terraform
 ```
 
-## Proveedor de Nube
-
-En este espacio encontrarás información sobre los distintos proveedores de nube (y otros servicios) con los cuales Terraform puede interactuar para crear, modificar y gestionar infraestructura. 
-
-Puedes explorar el directorio completo de proveedores oficiales, verificados y de la comunidad directamente en el registro de Terraform:
-**[Lista de Nubes y Proveedores](https://registry.terraform.io/browse/providers)**
+**Otros sistemas operativos**
+Descarga el instalador oficial según tu SO: [Guía de instalación oficial](https://developer.hashicorp.com/terraform/install)
 
 ---
 
-## Cómo utilizar un Proveedor (Ejemplo: Azure)
+## Proveedor de nube
 
-Para instalar y utilizar un proveedor específico en tu proyecto, debes declarar su configuración dentro de un archivos de Terraform llamado `main.tf`.
+Terraform se conecta a distintos servicios de nube (Azure, AWS, GCP, etc.) a través de **proveedores**. Cada proveedor expone los recursos que puedes crear y gestionar.
 
-Dentro de `main.tf`
+→ [Ver todos los proveedores disponibles](https://registry.terraform.io/browse/providers)
 
-### 1. Copia el bloque de configuración
-Para el caso de **Azure**, utiliza el siguiente código para definir la fuente y la versión requerida:
+---
+
+## Configurar un proveedor — Ejemplo: Azure
+
+**1. Crea un archivo `main.tf`** en tu proyecto y agrega el siguiente bloque:
 
 ```hcl
 terraform {
@@ -43,11 +41,10 @@ terraform {
 
 provider "azurerm" {
   features {} # Requerido para el funcionamiento de azurerm
-  # Aquí puedes añadir opciones de configuración adicionales
 }
 ```
 
-Una vez que hayas copiado y pegado el código de configuración, debes ejecutar el siguiente comando en tu terminal para descargar e inicializar el proveedor:
+**2. Descarga el proveedor** ejecutando:
 
 ```bash
 terraform init
@@ -55,42 +52,51 @@ terraform init
 
 ---
 
-Comandos básicos para inicializar, aplicar y destruir la infraestructura gestionada con Terraform.
+## Flujo de trabajo principal de Manejo de Infra
 
-## Inicializar y Aplicar Cambios con Terraform
+### 1. Inicializar el proyecto
 
-### 1. Inicializar el repositorio
-Prepara el directorio de trabajo, descargando los *providers* (proveedores) y módulos necesarios para la creación de la infraestructura.
+Prepara el directorio de trabajo: descarga los proveedores y módulos necesarios. Ejecuta esto una sola vez al comenzar o al añadir nuevos proveedores.
 
 ```bash
 terraform init
 ```
 
-### 2. Guardar la configuración (Planificar)
-Evalúa el estado actual, determina qué acciones son necesarias para alcanzar el estado deseado y guarda esta configuración en un archivo de salida llamado plan.out.
+### 2. Planificar los cambios
+
+Compara el estado actual de tu infraestructura con lo definido en tus archivos y guarda las acciones pendientes en `plan.out`. Revisa el resultado antes de aplicar.
 
 ```bash
 terraform plan -out plan.out
 ```
 
-### 3. Desplegar la infraestructura
-Aplica los cambios basándose en el plan previamente guardado. Esto creará o modificará los recursos en tu proveedor de nube.
+### 3. Aplicar los cambios
+
+Ejecuta el plan guardado y crea o modifica los recursos en tu proveedor de nube.
 
 ```bash
 terraform apply "plan.out"
 ```
 
-## Eliminar todos los recursos
-Destruye de forma permanente toda la infraestructura que está siendo administrada por los archivos de configuración actuales.
+---
+
+## Eliminar infraestructura
+
+> ⚠️ **Acción irreversible.** Asegúrate de revisar qué recursos serán eliminados antes de confirmar.
+
+### Destruir todo
+
+Elimina permanentemente todos los recursos administrados por los archivos de configuración actuales.
 
 ```bash
 terraform destroy
 ```
 
-## Eliminar un recurso en específico
-Si necesitas eliminar solo un recurso en particular sin afectar el resto de tu infraestructura (por ejemplo, un grupo de recursos en Azure), utiliza el parámetro -target.
+### Destruir un recurso específico
 
+Elimina solo un recurso sin afectar el resto. Reemplaza `<nombre>` con el nombre que le diste al recurso en tu configuración.
 
 ```bash
-terraform destroy -target=azurerm_resource_group.<nombre_que_diste_a_tu_recurso>
+terraform destroy -target=azurerm_resource_group.<nombre>
 ```
+
