@@ -1,18 +1,61 @@
 # Gestión de Infraestructura con Terraform
 
-Comandos básicos para inicializar, aplicar y destruir la infraestructura gestionada con Terraform.
-
 ---
 
 ## Instalación 
 
 [Instalación dependiendo tu SO](https://developer.hashicorp.com/terraform/install)
 
+
 Mac
 ```bash
 brew tap hashicorp/tap
 brew install hashicorp/tap/terraform
 ```
+
+## Proveedor de Nube
+
+En este espacio encontrarás información sobre los distintos proveedores de nube (y otros servicios) con los cuales Terraform puede interactuar para crear, modificar y gestionar infraestructura. 
+
+Puedes explorar el directorio completo de proveedores oficiales, verificados y de la comunidad directamente en el registro de Terraform:
+**[Lista de Nubes y Proveedores](https://registry.terraform.io/browse/providers)**
+
+---
+
+## Cómo utilizar un Proveedor (Ejemplo: Azure)
+
+Para instalar y utilizar un proveedor específico en tu proyecto, debes declarar su configuración dentro de un archivos de Terraform llamado `main.tf`.
+
+Dentro de `main.tf`
+
+### 1. Copia el bloque de configuración
+Para el caso de **Azure**, utiliza el siguiente código para definir la fuente y la versión requerida:
+
+```hcl
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "4.69.0"
+    }
+  }
+}
+
+provider "azurerm" {
+  features {} # Requerido para el funcionamiento de azurerm
+  # Aquí puedes añadir opciones de configuración adicionales
+}
+```
+
+Una vez que hayas copiado y pegado el código de configuración, debes ejecutar el siguiente comando en tu terminal para descargar e inicializar el proveedor:
+
+```bash
+terraform init
+```
+
+---
+
+Comandos básicos para inicializar, aplicar y destruir la infraestructura gestionada con Terraform.
 
 ## Inicializar y Aplicar Cambios con Terraform
 
