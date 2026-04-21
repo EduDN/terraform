@@ -1,6 +1,6 @@
 # Gestión de Infraestructura con Terraform
 
-Este documento describe los comandos esenciales para inicializar, aplicar y destruir la infraestructura gestionada con Terraform.
+Comandos básicos para inicializar, aplicar y destruir la infraestructura gestionada con Terraform.
 
 ---
 
