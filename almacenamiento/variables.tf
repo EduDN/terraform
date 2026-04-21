@@ -1,0 +1,3 @@
+variable "subscripcion" {
+    type = string 
+}
