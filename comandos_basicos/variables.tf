@@ -4,5 +4,4 @@ variable "subscripcion" {
 
 variable "demo_recurso_nombre" {
     type = string
-  
 }
