@@ -99,4 +99,20 @@ Elimina solo un recurso sin afectar el resto. Reemplaza `<nombre>` con el nombre
 ```bash
 terraform destroy -target=azurerm_resource_group.<nombre>
 ```
+### Agregar un nuevo proveedor
 
+Para añadir a un nuevo proveedor se necesitará reiniciar el proyecto
+
+```bash
+terraform init -upgrade
+```
+
+### Prácticas de seguridad
+
+Al momento de desplegar nuestra infraestructura , se genera un archivo "terraform.tfstate", este mismo traerá toda la bitácora relacionada a lo desplegado, por lo cual lo mejor será mantenerlo oculto por temas de seguridad y no subirlo a nuestros repositorios.
+
+"terraform.tfstate" le permite saber al motor de Terraform qué esta echo, últimos cambios, cadenas de conexión y llaves de acceso expuestas.
+
+### Tutoriales por tipo de Proveedor de nube
+
+[Documentación](https://developer.hashicorp.com/terraform/tutorials)
