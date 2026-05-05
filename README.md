@@ -109,9 +109,24 @@ terraform init -upgrade
 
 ### Prácticas de seguridad
 
-Al momento de desplegar nuestra infraestructura , se genera un archivo "terraform.tfstate", este mismo traerá toda la bitácora relacionada a lo desplegado, por lo cual lo mejor será mantenerlo oculto por temas de seguridad y no subirlo a nuestros repositorios.
+Al momento de desplegar nuestra infraestructura , se genera un archivo "terraform.tfstate", este mismo traerá toda la bitácora/estado relacionada a lo desplegado, por lo cual lo mejor será mantenerlo oculto por temas de seguridad y no subirlo a nuestros repositorios.
 
 "terraform.tfstate" le permite saber al motor de Terraform qué esta echo, últimos cambios, cadenas de conexión y llaves de acceso expuestas.
+
+
+### Estado remoto
+
+Al trabajar en equipo, es crítico que el archivo de estado (terraform.tfstate) sea la única fuente de verdad para evitar discrepancias en la infraestructura. Para lograrlo, el manejo del estado debe configurarse de forma remota a través del bloque backend. Es importante destacar que cada proveedor de nube maneja de manera distinta el lugar de almacenamiento para poder bloquear el estado. Una vez configurado el backend correspondiente a la nube (GCP, AWS o Azure), se habilita el bloqueo de estado (state locking): cada vez que alguien inicia un despliegue, el estado se bloquea temporalmente para evitar modificaciones simultáneas. Al finalizar, el archivo se libera, permitiendo que otros miembros del equipo puedan consultar la versión más reciente y realizar nuevos cambios.
+
+Al momento de manejar el estado de manera remota, ya no lo podrás visualizar de manera local, sin embargo una forma de consultarlo es:
+
+```bash
+terraform show
+```
+
+![alt text](images/image.png)
+
+
 
 ### Tutoriales por tipo de Proveedor de nube
 
