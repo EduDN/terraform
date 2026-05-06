@@ -126,6 +126,10 @@ terraform show
 
 ![alt text](images/image.png)
 
+### Uso de Recursos importados
+
+Para manejar o crear recursos adicionales dentro de un grupo de recursos previamente creado, utilizaremos el bloque "data" de Terraform. Esto nos permite consultar la configuración de infraestructura ya desplegada y utilizar esa información como referencia para crear nuevos componentes.
+
 
 
 ### Tutoriales por tipo de Proveedor de nube
