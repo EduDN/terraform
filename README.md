@@ -162,6 +162,12 @@ Aunque ambos parecen similares, cumplen funciones distintas:
 * terraform validate: detecta errores de sintaxis y reglas básicas antes de ejecutar un plan.
 * terraform plan: valida contra el proveedor cloud, comprobando configuraciones específicas (ejemplo: si existe una región como Brazil North, que no es válida).
 
+Flujo recomendado
+
+terraform fmt → Asegura legibilidad y consistencia.
+terraform validate → Previene errores de sintaxis y reglas.
+terraform plan → Valida contra Azure, AWS o GCP antes del despliegue real.
+terraform apply → Despliega con confianza.
 
 ### Tutoriales por tipo de Proveedor de nube
 
