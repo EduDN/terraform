@@ -155,6 +155,14 @@ Que los bloques y atributos tengan la sintaxis adecuada.
 Que los valores cumplen con las restricciones de Terraform (ejemplo: nombres de cuentas de almacenamiento).
 No valida contra la nube directamente, sino contra la sintaxis y estructura local del proyecto.
 
+### Diferencia entre validate y plan
+
+Aunque ambos parecen similares, cumplen funciones distintas:
+
+* terraform validate: detecta errores de sintaxis y reglas básicas antes de ejecutar un plan.
+* terraform plan: valida contra el proveedor cloud, comprobando configuraciones específicas (ejemplo: si existe una región como Brazil North, que no es válida).
+
+
 ### Tutoriales por tipo de Proveedor de nube
 
 [Documentación](https://developer.hashicorp.com/terraform/tutorials)
