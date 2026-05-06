@@ -123,6 +123,7 @@ Al momento de manejar el estado de manera remota, ya no lo podrás visualizar de
 ```bash
 terraform show
 ```
+[Ejemplo](https://github.com/EduDN/terraform/tree/main/estados_terraform)
 
 ![alt text](images/image.png)
 
@@ -130,7 +131,29 @@ terraform show
 
 Para manejar o crear recursos adicionales dentro de un grupo de recursos previamente creado, utilizaremos el bloque "data" de Terraform. Esto nos permite consultar la configuración de infraestructura ya desplegada y utilizar esa información como referencia para crear nuevos componentes.
 
+[Ejemplo](https://github.com/EduDN/terraform/tree/main/data)
 
+### Mejorar Formato automático del Código
+
+El comando terraform fmt (format) es el encargado de dar uniformidad al código, mejorando la legibilidad y facilitando el trabajo colaborativo.
+
+* Reordena espacios y alineaciones en los archivos .tf.
+* Garantiza que signos como el = estén alineados uniformemente.
+* Puede ejecutarse en un archivo, carpeta o de forma recursiva sobre todo el proyecto.
+
+```bash
+terraform fmt
+```
+
+### Validación de Código de Terraform
+
+Una vez el código está formateado, el siguiente paso es asegurarse de que la sintaxis y las reglas de Terraform sean correctas. Aquí entra en juego terraform validate.
+
+¿Qué comprueba?
+
+Que los bloques y atributos tengan la sintaxis adecuada.
+Que los valores cumplen con las restricciones de Terraform (ejemplo: nombres de cuentas de almacenamiento).
+No valida contra la nube directamente, sino contra la sintaxis y estructura local del proyecto.
 
 ### Tutoriales por tipo de Proveedor de nube
 
